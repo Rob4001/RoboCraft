@@ -1,0 +1,43 @@
+<project name="RoboCraft" default="release">
+		
+	<property name="mc.version" value="1.4.7" />
+	<property name="forge.version" value="6.6.0.515" />
+	<property name="mod.version" value="0.0.1" />
+	<property name="mcp.dir" value="../mcp/"/>	
+		
+	<import file="../mcp/mcp.xml"/>
+
+	<!-- Set unknown build number -->
+	<target name="version-not-provided" unless="env.BUILD_NUMBER">
+		<property name="build.number" value="unknown" />
+	</target>
+
+	<!-- Set build number from environment -->
+	<target name="version-provided" if="env.BUILD_NUMBER">
+		<property name="build.number" value="${env.BUILD_NUMBER}" />
+	</target>
+
+
+
+
+	<target name="release" depends="version-provided,version-not-provided">
+		<!-- Prep for the release -->
+		<antcall target="setup" />
+		<antcall target="clean" />
+		<antcall target="build" />
+		<antcall target="recompile" />
+		<antcall target="reobfuscate" />
+
+		<!-- Build the jar -->
+		<mkdir dir="release\${mc.version}\${mod.version}" />
+		<jar destfile="release\${mc.version}\${mod.version}\RoboCraft-${mod.version}.${build.number}.jar">
+			<fileset dir="${forge.dir}\mcp\src\minecraft\" includes="mod.info" />
+			<fileset dir="${forge.dir}\mcp\reobf\minecraft" />
+			<fileset dir="resources" />
+		</jar>
+
+		<!-- Clean up the P source now that we are done -->
+		<antcall target="clean" />
+	</target>
+
+</project>
