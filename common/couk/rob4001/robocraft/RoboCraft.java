@@ -1,5 +1,7 @@
 package couk.rob4001.robocraft;
 
+import couk.rob4001.robocraft.blocks.ModBlocks;
+import couk.rob4001.robocraft.item.ModItems;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -33,6 +35,8 @@ public class RoboCraft {
         @Init
         public void load(FMLInitializationEvent event) {
                 proxy.registerRenderers();
+                ModItems.initialize();
+                ModBlocks.initialize();
         }
         
         @PostInit
