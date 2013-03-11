@@ -1,4 +1,5 @@
 package couk.rob4001.robocraft.blocks;
+import couk.rob4001.robocraft.CommonProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
@@ -10,8 +11,7 @@ public class TinkerTable extends Block {
         
         @Override
         public String getTextureFile () {
-                //TODO what goes in here????	
-        	return null;
+        	return CommonProxy.BLOCK_PNG;
         }
 
 }

@@ -10,7 +10,7 @@ import net.minecraftforge.common.MinecraftForge;
 public class ModBlocks {
 
 	//Blocks
-    public final static Block tinkerTable = new TinkerTable(160, 1, Material.rock)
+    public final static Block tinkerTable = new TinkerTable(160, 0, Material.rock)
     .setHardness(5F)
     .setStepSound(Block.soundMetalFootstep)
     .setBlockName("tinkerTable")
@@ -21,8 +21,7 @@ public class ModBlocks {
 		//Tinker Table
 		GameRegistry.registerBlock(tinkerTable, "tinkerTable");
 		LanguageRegistry.addName(tinkerTable, "Tinker Table");
-		MinecraftForge.setBlockHarvestLevel(tinkerTable, "pickaxe", 0);
-		
+		MinecraftForge.setBlockHarvestLevel(tinkerTable, "pickaxe", 0);		
 	}
 
 }
