@@ -25,7 +25,9 @@ public class RoboCraft {
         
         // Says where the client and server 'proxy' code is loaded.
         @SidedProxy(clientSide="couk.rob4001.robocraft.client.ClientProxy", serverSide="couk.rob4001.robocraft.CommonProxy")
-        public static CommonProxy proxy;       
+        public static CommonProxy proxy;
+
+		public static int idShift = 500;       
                
         
         @PreInit
