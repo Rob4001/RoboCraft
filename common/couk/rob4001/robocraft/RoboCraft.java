@@ -1,5 +1,6 @@
 package couk.rob4001.robocraft;
 
+import net.minecraft.creativetab.CreativeTabs;
 import couk.rob4001.robocraft.blocks.ModBlocks;
 import couk.rob4001.robocraft.item.ModItems;
 import cpw.mods.fml.common.Mod;
@@ -28,7 +29,7 @@ public class RoboCraft {
         public static CommonProxy proxy;
 
 		public static int idShift = 500;       
-               
+		public static CreativeTabs creativeTab = new RCCreativeTab();   
         
         @PreInit
         public void preInit(FMLPreInitializationEvent event) {

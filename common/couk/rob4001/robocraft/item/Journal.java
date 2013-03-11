@@ -6,7 +6,6 @@ public class Journal extends RCItem {
 
 	public Journal(int id) {
 		super(id);
-		this.setCreativeTab(CreativeTabs.tabMisc);
 		this.setItemName("Scientific Journal");
 	}
 

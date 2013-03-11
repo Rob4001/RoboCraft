@@ -1,5 +1,7 @@
 package couk.rob4001.robocraft.blocks;
 import couk.rob4001.robocraft.CommonProxy;
+import couk.rob4001.robocraft.statics.RenderIDs;
+import couk.rob4001.robocraft.statics.Sprites;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
@@ -11,7 +13,25 @@ public class TinkerTable extends Block {
         
         @Override
         public String getTextureFile () {
-        	return CommonProxy.BLOCK_PNG;
+        	return Sprites.Model_TinkerTable;
+        }
+        
+        @Override
+        public boolean renderAsNormalBlock() {
+
+            return false;
+        }
+
+        @Override
+        public boolean isOpaqueCube() {
+
+            return false;
+        }
+
+        @Override
+        public int getRenderType() {
+
+            return RenderIDs.TinkerTable;
         }
 
 }

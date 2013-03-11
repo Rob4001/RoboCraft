@@ -9,6 +9,7 @@ public class RCItem extends Item{
 	public RCItem(int id) {
 		super(id + RoboCraft.idShift);
 		this.setIconIndex(id);
+		this.setCreativeTab(RoboCraft.creativeTab);
 	}
 	
 	@Override
