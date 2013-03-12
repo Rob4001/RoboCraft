@@ -6,6 +6,8 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 
 public class ModBlocks {
@@ -18,11 +20,28 @@ public class ModBlocks {
     .setCreativeTab(CreativeTabs.tabBlock);    
     
 	public static void initialize() {
-		
-		//Tinker Table
-		GameRegistry.registerBlock(tinkerTable, "tinkerTable");
+		addNames();
+		setHarvestLevels();
+		blockRegistration();
+		addBlockRecipes();		
+	}
+	
+	public static void addNames() {
 		LanguageRegistry.addName(tinkerTable, "Tinker Table");
-		MinecraftForge.setBlockHarvestLevel(tinkerTable, "pickaxe", 0);		
+	}
+	
+	public static void setHarvestLevels() {
+		MinecraftForge.setBlockHarvestLevel(tinkerTable, "pickaxe", 0);
+	}
+	
+	public static void addBlockRecipes() {
+		GameRegistry.addRecipe(new ItemStack(tinkerTable), "lr", "ca", 
+				'l', new ItemStack(Block.lever), 'r', new ItemStack(Item.redstone),
+				'c', new ItemStack(Block.workbench), 'a', new ItemStack(Block.anvil));
+	}
+	
+	public static void blockRegistration() {
+		GameRegistry.registerBlock(tinkerTable, "tinkerTable");
 	}
 
 }
