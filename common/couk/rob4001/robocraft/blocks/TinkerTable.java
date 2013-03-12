@@ -2,22 +2,17 @@ package couk.rob4001.robocraft.blocks;
 
 import java.util.Random;
 
-import couk.rob4001.robocraft.CommonProxy;
 import couk.rob4001.robocraft.RoboCraft;
 import couk.rob4001.robocraft.statics.RenderIDs;
 import couk.rob4001.robocraft.statics.Sprites;
 import couk.rob4001.robocraft.tileentities.TileEntityTinkerTable;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class TinkerTable extends RCBlock {
 

@@ -1,5 +1,6 @@
 package couk.rob4001.robocraft.blocks;
 
+import couk.rob4001.robocraft.RoboCraft;
 import couk.rob4001.robocraft.tileentities.TileRC;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -13,6 +14,7 @@ public abstract class RCBlock extends BlockContainer{
 	
 	 protected RCBlock(int par1, int par2, Material par3Material) {
 		super(par1, par2, par3Material);
+		this.setCreativeTab(RoboCraft.creativeTab);
 	}
 
 	/**

@@ -32,7 +32,7 @@ public class ItemTinkerTableRenderer implements IItemRenderer {
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
 		 switch (type) {
          case ENTITY: {
-             renderTinkerTable(0.5F, 0.5F, 0.5F);
+             renderTinkerTable(0F, 1F, 0F);
              break;
          }
          case EQUIPPED: {
