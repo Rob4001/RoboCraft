@@ -15,7 +15,6 @@ public class ClientProxy extends CommonProxy{
 	 public void registerRenderers () {
          MinecraftForgeClient.preloadTexture(ITEMS_PNG);
          MinecraftForgeClient.preloadTexture(BLOCK_PNG);
-         MinecraftForgeClient.preloadTexture("/textures/chest.png");
          
          RenderIDs.TinkerTable = RenderingRegistry.getNextAvailableRenderId();
          MinecraftForgeClient.registerItemRenderer(BlockIds.TinkerTable, new ItemTinkerTableRenderer());

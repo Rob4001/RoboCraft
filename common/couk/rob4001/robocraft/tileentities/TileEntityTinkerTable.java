@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityTinkerTable extends TileEntity implements IInventory {
+public class TileEntityTinkerTable extends TileRC implements IInventory {
 	
 	private ItemStack[] inv;
 

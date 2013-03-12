@@ -19,15 +19,15 @@ public class TileTinkerTableRenderer<TileAlchemicalChest> extends
 
     private ModelTinkerTable modelTinkerTable = new ModelTinkerTable(1/16F);
 
-    public void renderTinkerTable(TileEntityTinkerTable tileAlchemicalChest, double x, double y, double z, float tick) {
+    public void renderTinkerTable(TileEntityTinkerTable tileTinkerTable, double x, double y, double z, float tick) {
 
         ForgeDirection direction = null;
 
-        if (tileAlchemicalChest.getWorldObj() != null) {
-            direction = ForgeDirection.getOrientation(tileAlchemicalChest.getBlockMetadata());
+        if (tileTinkerTable.getWorldObj() != null) {
+            direction = ForgeDirection.getOrientation(tileTinkerTable.getBlockMetadata());
         }
 
-        FMLClientHandler.instance().getClient().renderEngine.getTexture(Sprites.Model_TinkerTable);
+        int id = FMLClientHandler.instance().getClient().renderEngine.getTexture(Sprites.Model_TinkerTable);
         GL11.glPushMatrix();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -50,9 +50,9 @@ public class TileTinkerTableRenderer<TileAlchemicalChest> extends
                 angle = -90;
             }
         }
-        GL11.glRotatef(180, 1, 0, 0);
         GL11.glRotatef(angle, 0.0F, 1.0F, 0.0F);
-        GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+        GL11.glTranslatef(0, -1F, 0);
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(id);
         modelTinkerTable.render(1/16F);
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glPopMatrix();

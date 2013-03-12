@@ -19,7 +19,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class TinkerTable extends BlockContainer {
+public class TinkerTable extends RCBlock {
 
         public TinkerTable (int id, int texture, Material material) {
                 super(id, texture, material);
