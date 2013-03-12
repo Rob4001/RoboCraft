@@ -86,23 +86,18 @@ public class TinkerTable extends BlockContainer {
         
         @Override
         public boolean renderAsNormalBlock() {
-
             return false;
         }
 
         @Override
         public boolean isOpaqueCube() {
-
             return false;
         }
 
         @Override
         public int getRenderType() {
-
             return RenderIDs.TinkerTable;
-        }
-        
-        
+        }       
 
 		@Override
 		public TileEntity createNewTileEntity(World var1) {

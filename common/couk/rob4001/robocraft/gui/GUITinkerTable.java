@@ -1,11 +1,10 @@
 package couk.rob4001.robocraft.gui;
 
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
-
 import couk.rob4001.robocraft.containers.ContainerTinkerTable;
 import couk.rob4001.robocraft.tileentities.TileEntityTinkerTable;
 
@@ -37,5 +36,25 @@ public class GUITinkerTable extends GuiContainer {
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 		
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+    public void initGui() {
+            super.initGui();
+            //make buttons
+            
+            GuiButton research = new GuiButton(1, ((width - xSize) / 2) + 8, ((height - ySize) / 2) + (ySize / 2) - 35, 50, 20, "Research");
+                                    //id, x, y, width, height, text
+            controlList.add(research);
+    }
+
+    protected void actionPerformed(GuiButton guibutton) {
+            //id is the id you give your button
+            //switch(guibutton.id) { //Only needed if multiple buttons
+            //case 1:
+                    //Do something
+                    //break;     
+            //}
+    }
 
 }
