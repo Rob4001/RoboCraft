@@ -2,7 +2,9 @@ package couk.rob4001.robocraft;
 
 import net.minecraft.creativetab.CreativeTabs;
 import couk.rob4001.robocraft.blocks.ModBlocks;
+import couk.rob4001.robocraft.gui.GUIHandler;
 import couk.rob4001.robocraft.item.ModItems;
+import couk.rob4001.robocraft.tileentities.TileEntityTinkerTable;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -13,15 +15,22 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 
 
 @Mod(modid="robo", name="RoboMod", version="@VERSION@")
-@NetworkMod(clientSideRequired=true, serverSideRequired=false)
+@NetworkMod(clientSideRequired=true, serverSideRequired=false, clientPacketHandlerSpec =
+@SidedPacketHandler(channels = {"Robocraft" }, packetHandler = ClientPacketHandler.class),
+serverPacketHandlerSpec =
+@SidedPacketHandler(channels = {"Robocraft" }, packetHandler = ServerPacketHandler.class))
 public class RoboCraft {
 
         // The instance of your mod that Forge uses.
-        @Instance("Generic")
+        @Instance("robo")
         public static RoboCraft instance;
         
         // Says where the client and server 'proxy' code is loaded.
@@ -38,7 +47,10 @@ public class RoboCraft {
         
         @Init
         public void load(FMLInitializationEvent event) {
-                proxy.registerRenderers();
+                proxy.registerRenderers();    
+                //Register the gui handler
+                GameRegistry.registerTileEntity(TileEntityTinkerTable.class, "containerTinkerTable");
+                NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
                 ModItems.initialize();
                 ModBlocks.initialize();
                 
