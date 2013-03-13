@@ -12,7 +12,7 @@ public class TileEntityTinkerTable extends TileRC implements IInventory {
 	private ItemStack[] inv;
 
 	public TileEntityTinkerTable() {
-		inv = new ItemStack[9];
+		inv = new ItemStack[10];
 	}
 	
 	@Override

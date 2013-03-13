@@ -17,10 +17,13 @@ public class ContainerTinkerTable extends Container {
 		//the Slot constructor takes the IInventory and the slot number in that it binds to
         //and the x-y coordinates it resides on-screen
 		for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                    addSlotToContainer(new Slot(tileEntity, j + i * 3, 62 + j * 18, 17 + i * 18));
+            for (int j = 0; j < 3; j++) {                    //id         x               y
+                    addSlotToContainer(new Slot(tileEntity, j + i * 3, 62 + j * 18, 23 + i * 18));
             }
 		}
+		addSlotToContainer(new Slot(tileEntity, 9, 26, 23));
+		
+		
 
 		//commonly used vanilla code that adds the player's inventory
 		bindPlayerInventory(inventoryPlayer);
