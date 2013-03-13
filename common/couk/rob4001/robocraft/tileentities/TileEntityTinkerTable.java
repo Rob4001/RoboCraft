@@ -111,6 +111,4 @@ public class TileEntityTinkerTable extends TileRC implements IInventory {
             }
             tagCompound.setTag("Inventory", itemList);
     }
-
-
 }

@@ -21,9 +21,7 @@ public class ContainerTinkerTable extends Container {
                     addSlotToContainer(new Slot(tileEntity, j + i * 3, 62 + j * 18, 23 + i * 18));
             }
 		}
-		addSlotToContainer(new Slot(tileEntity, 9, 26, 23));
-		
-		
+		addSlotToContainer(new Slot(tileEntity, 9, 26, 23));	
 
 		//commonly used vanilla code that adds the player's inventory
 		bindPlayerInventory(inventoryPlayer);
