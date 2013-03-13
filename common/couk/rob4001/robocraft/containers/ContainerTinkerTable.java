@@ -1,34 +1,56 @@
 package couk.rob4001.robocraft.containers;
 
+import couk.rob4001.robocraft.RoboCraft;
 import couk.rob4001.robocraft.tileentities.TileEntityTinkerTable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryCraftResult;
+import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
+import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.world.World;
 
 public class ContainerTinkerTable extends Container {
 
 	protected TileEntityTinkerTable tileEntity;
+	//Create 3x3 crafting matrix
+	public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
+	public IInventory craftResult = new InventoryCraftResult();
+	private World worldObj;
 	
 	public ContainerTinkerTable(InventoryPlayer inventoryPlayer, TileEntityTinkerTable te) {
 		tileEntity = te;
 		
 		//the Slot constructor takes the IInventory and the slot number in that it binds to
         //and the x-y coordinates it resides on-screen
-		for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {                    //id         x               y
-                    addSlotToContainer(new Slot(tileEntity, j + i * 3, 62 + j * 18, 23 + i * 18));
-            }
-		}
-		addSlotToContainer(new Slot(tileEntity, 9, 26, 23));	
+		addSlotToContainer(new SlotCrafting(inventoryPlayer.player, craftMatrix, craftResult, 0, 62, 23));
+		
+		//for (int i = 0; i < 3; i++) {
+           // for (int j = 0; j < 3; j++) {                       //id            x             y
+             //       addSlotToContainer(new Slot(craftMatrix, j + i * 3, j * 18, i * 18));
+            //}
+		//}
+		
+		//addSlotToContainer(new Slot(tileEntity, 9, 26, 23));	
+		
+		//worldObj = world;
 
 		//commonly used vanilla code that adds the player's inventory
 		bindPlayerInventory(inventoryPlayer);
+		this.onCraftMatrixChanged(craftMatrix);
 	}
 	@Override
 	public boolean canInteractWith(EntityPlayer var1) {		
 		return tileEntity.isUseableByPlayer(var1);
+	}
+	
+	@Override
+	public void onCraftMatrixChanged(IInventory inv){
+	//this.craftResult.setInventorySlotContents(0, ForgeCraftingManager.getInstance().findMatchingRecipe(craftMatrix, worldObj));
 	}
 	
 	 protected void bindPlayerInventory(InventoryPlayer inventoryPlayer) {
