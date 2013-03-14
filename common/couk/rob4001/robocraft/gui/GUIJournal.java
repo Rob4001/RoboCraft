@@ -118,16 +118,16 @@ public class GUIJournal extends GuiScreen{
     /**
      * Draws the screen and all the components in it.
      */
-    public void drawScreen(int par1, int par2, float par3)
+    public void drawScreen(int mouseX, int mouseY, float ticks)
     {
         if (Mouse.isButtonDown(0))
         {
-            int var4 = (this.width - this.researchsPaneWidth) / 2;
-            int var5 = (this.height - this.researchsPaneHeight) / 2;
-            int var6 = var4 + 8;
-            int var7 = var5 + 17;
+            int borderWidth = (this.width - this.researchsPaneWidth) / 2;
+            int boardrHeight = (this.height - this.researchsPaneHeight) / 2;
+            int var6 = borderWidth + 8;
+            int var7 = boardrHeight + 17;
 
-            if ((this.isMouseButtonDown == 0 || this.isMouseButtonDown == 1) && par1 >= var6 && par1 < var6 + 224 && par2 >= var7 && par2 < var7 + 155)
+            if ((this.isMouseButtonDown == 0 || this.isMouseButtonDown == 1) && mouseX >= var6 && mouseX < var6 + 224 && mouseY >= var7 && mouseY < var7 + 155)
             {
                 if (this.isMouseButtonDown == 0)
                 {
@@ -135,14 +135,14 @@ public class GUIJournal extends GuiScreen{
                 }
                 else
                 {
-                    this.guiMapX -= (double)(par1 - this.mouseX);
-                    this.guiMapY -= (double)(par2 - this.mouseY);
+                    this.guiMapX -= (double)(mouseX - this.mouseX);
+                    this.guiMapY -= (double)(mouseY - this.mouseY);
                     this.field_74124_q = this.field_74117_m = this.guiMapX;
                     this.field_74123_r = this.field_74115_n = this.guiMapY;
                 }
 
-                this.mouseX = par1;
-                this.mouseY = par2;
+                this.mouseX = mouseX;
+                this.mouseY = mouseY;
             }
 
             if (this.field_74124_q < (double)guiMapTop)
@@ -171,7 +171,7 @@ public class GUIJournal extends GuiScreen{
         }
 
         this.drawDefaultBackground();
-        this.genResearchBackground(par1, par2, par3);
+        this.genResearchBackground(mouseX, mouseY, ticks);
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         this.drawTitle();
@@ -208,13 +208,13 @@ public class GUIJournal extends GuiScreen{
     {
         int var1 = (this.width - this.researchsPaneWidth) / 2;
         int var2 = (this.height - this.researchsPaneHeight) / 2;
-        this.fontRenderer.drawString("researchs", var1 + 15, var2 + 5, 4210752);
+        this.fontRenderer.drawString("Scientific Journal", var1 + 15, var2 + 5, 4210752);
     }
 
-    protected void genResearchBackground(int par1, int par2, float par3)
+    protected void genResearchBackground(int mouseX, int mouseY, float ticks)
     {
-        int var4 = MathHelper.floor_double(this.field_74117_m + (this.guiMapX - this.field_74117_m) * (double)par3);
-        int var5 = MathHelper.floor_double(this.field_74115_n + (this.guiMapY - this.field_74115_n) * (double)par3);
+        int var4 = MathHelper.floor_double(this.field_74117_m + (this.guiMapX - this.field_74117_m) * (double)ticks);
+        int var5 = MathHelper.floor_double(this.field_74115_n + (this.guiMapY - this.field_74115_n) * (double)ticks);
 
         if (var4 < guiMapTop)
         {
@@ -236,7 +236,7 @@ public class GUIJournal extends GuiScreen{
             var5 = guiMapRight - 1;
         }
 
-        int var6 = this.mc.renderEngine.getTexture("/terrain.png");
+        int var6 = this.mc.renderEngine.getTexture("/gui/journal.png");
         int var7 = this.mc.renderEngine.getTexture("/achievement/bg.png");
         int var8 = (this.width - this.researchsPaneWidth) / 2;
         int var9 = (this.height - this.researchsPaneHeight) / 2;
@@ -246,90 +246,30 @@ public class GUIJournal extends GuiScreen{
         GL11.glDepthFunc(GL11.GL_GEQUAL);
         GL11.glPushMatrix();
         GL11.glTranslatef(0.0F, 0.0F, -200.0F);
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+        int vx = (int)((var4 - guiMapTop) / Math.abs(guiMapTop - guiMapBottom) * 288.0F);
+        int vy = (int)((var5 - guiMapLeft) / Math.abs(guiMapLeft - guiMapRight) * 316.0F);
         GL11.glEnable(GL11.GL_COLOR_MATERIAL);
         this.mc.renderEngine.bindTexture(var6);
-        int var12 = var4 + 288 >> 4;
-        int var13 = var5 + 288 >> 4;
-        int var14 = (var4 + 288) % 16;
-        int var15 = (var5 + 288) % 16;
-        Random var21 = new Random();
-        int var22;
-        int var25;
-        int var24;
-        int var26;
-
-        for (var22 = 0; var22 * 16 - var15 < 155; ++var22)
-        {
-            float var23 = 0.6F - (float)(var13 + var22) / 25.0F * 0.3F;
-            GL11.glColor4f(var23, var23, var23, 1.0F);
-
-            for (var24 = 0; var24 * 16 - var14 < 224; ++var24)
-            {
-                var21.setSeed((long)(1234 + var12 + var24));
-                var21.nextInt();
-                var25 = var21.nextInt(1 + var13 + var22) + (var13 + var22) / 2;
-                var26 = Block.sand.blockIndexInTexture;
-
-                if (var25 <= 37 && var13 + var22 != 35)
-                {
-                    if (var25 == 22)
-                    {
-                        if (var21.nextInt(2) == 0)
-                        {
-                            var26 = Block.oreDiamond.blockIndexInTexture;
-                        }
-                        else
-                        {
-                            var26 = Block.oreRedstone.blockIndexInTexture;
-                        }
-                    }
-                    else if (var25 == 10)
-                    {
-                        var26 = Block.oreIron.blockIndexInTexture;
-                    }
-                    else if (var25 == 8)
-                    {
-                        var26 = Block.oreCoal.blockIndexInTexture;
-                    }
-                    else if (var25 > 4)
-                    {
-                        var26 = Block.stone.blockIndexInTexture;
-                    }
-                    else if (var25 > 0)
-                    {
-                        var26 = Block.dirt.blockIndexInTexture;
-                    }
-                }
-                else
-                {
-                    var26 = Block.bedrock.blockIndexInTexture;
-                }
-
-                this.drawTexturedModalRect(var10 + var24 * 16 - var14, var11 + var22 * 16 - var15, var26 % 16 << 4, var26 >> 4 << 4, 16, 16);
-            }
-        }
+        this.drawTexturedModalRect(var10 / 2, var11 / 2, vx / 2, vy / 2, 112, 98);
 
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         GL11.glDepthFunc(GL11.GL_LEQUAL);
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
-        int var27;
-        int var30;
 
         List<ResearchItem> ResearchMap = Researchs;
-        for (var22 = 0; var22 < ResearchMap.size(); ++var22)
+        for (int var22 = 0; var22 < ResearchMap.size(); ++var22)
         {
             ResearchItem var33 = ResearchMap.get(var22);
 
             if (var33.parentResearch != null && ResearchMap.contains(var33.parentResearch))
             {
-                var24 = var33.displayColumn * 24 - var4 + 11 + var10;
-                var25 = var33.displayRow * 24 - var5 + 11 + var11;
-                var26 = var33.parentResearch.displayColumn * 24 - var4 + 11 + var10;
-                var27 = var33.parentResearch.displayRow * 24 - var5 + 11 + var11;
-                var30 = Math.sin((double)(Minecraft.getSystemTime() % 600L) / 600.0D * Math.PI * 2.0D) > 0.6D ? 255 : 130;
+                int var24 = var33.displayColumn * 24 - var4 + 11 + var10;
+                int var25 = var33.displayRow * 24 - var5 + 11 + var11;
+                int var26 = var33.parentResearch.displayColumn * 24 - var4 + 11 + var10;
+                int var27 = var33.parentResearch.displayRow * 24 - var5 + 11 + var11;
+                int var30 = Math.sin((double)(Minecraft.getSystemTime() % 600L) / 600.0D * Math.PI * 2.0D) > 0.6D ? 255 : 130;
                 int var31 = -16777216;
 
                 this.drawHorizontalLine(var24, var26, var25, var31);
@@ -346,11 +286,11 @@ public class GUIJournal extends GuiScreen{
         int var42;
         int var41;
 
-        for (var24 = 0; var24 < ResearchMap.size(); ++var24)
+        for (int var24 = 0; var24 < ResearchMap.size(); ++var24)
         {
             ResearchItem var35 = ResearchMap.get(var24);
-            var26 = var35.displayColumn * 24 - var4;
-            var27 = var35.displayRow * 24 - var5;
+            int var26 = var35.displayColumn * 24 - var4;
+            int var27 = var35.displayRow * 24 - var5;
 
             if (var26 >= -24 && var27 >= -24 && var26 <= 224 && var27 <= 155)
             {
@@ -381,7 +321,7 @@ public class GUIJournal extends GuiScreen{
 
                 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-                if (par1 >= var10 && par2 >= var11 && par1 < var10 + 224 && par2 < var11 + 155 && par1 >= var42 && par1 <= var42 + 22 && par2 >= var41 && par2 <= var41 + 22)
+                if (mouseX >= var10 && mouseY >= var11 && mouseX < var10 + 224 && mouseY < var11 + 155 && mouseX >= var42 && mouseX <= var42 + 22 && mouseY >= var41 && mouseY <= var41 + 22)
                 {
                     var32 = var35;
                 }
@@ -398,19 +338,19 @@ public class GUIJournal extends GuiScreen{
         GL11.glDepthFunc(GL11.GL_LEQUAL);
         GL11.glDisable(GL11.GL_DEPTH_TEST);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
-        super.drawScreen(par1, par2, par3);
+        super.drawScreen(mouseX, mouseY, ticks);
 
         if (var32 != null)
         {
             String var34 = LanguageHelper.translateToLocal(var32.getName());
             String var36 = var32.getDescription();
-            var26 = par1 + 12;
-            var27 = par2 - 4;
+            int var26 = mouseX + 12;
+            int var27 = mouseY - 4;
 
             
                 var42 = Math.max(this.fontRenderer.getStringWidth(var34), 120);
                 String var39 = LanguageHelper.translateToLocalFormatted("research.requires", new Object[] {LanguageHelper.translateToLocal(var32.parentResearch.getName())});
-                var30 = this.fontRenderer.splitStringWidth(var39, var42);
+                int var30 = this.fontRenderer.splitStringWidth(var39, var42);
                 this.drawGradientRect(var26 - 3, var27 - 3, var26 + var42 + 3, var27 + var30 + 12 + 3, -1073741824, -1073741824);
                 this.fontRenderer.drawSplitString(var39, var26, var27 + 12, var42, -9416624);
             

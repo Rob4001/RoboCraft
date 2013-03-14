@@ -20,6 +20,9 @@ public class ResearchMap {
 	
 	
 	public static ResearchItem firstResearch = (new ResearchItem(0, "openInventory", 0, 0, Item.book, (ResearchItem)null)).registerResearch();
+	public static ResearchItem SecondResearch = (new ResearchItem(0, "sjdufeInventory", 4, 7, Item.book, (ResearchItem)null)).registerResearch();
+	public static void init() {
+	}
 	
 	//TODO:Add more research!
 

@@ -4,6 +4,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import couk.rob4001.robocraft.blocks.ModBlocks;
 import couk.rob4001.robocraft.gui.GUIHandler;
 import couk.rob4001.robocraft.item.ModItems;
+import couk.rob4001.robocraft.research.ResearchMap;
 import couk.rob4001.robocraft.tileentities.TileEntityTinkerTable;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -53,7 +54,7 @@ public class RoboCraft {
                 NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
                 ModItems.initialize();
                 ModBlocks.initialize();
-                
+                ResearchMap.init();
                 
         }
         
