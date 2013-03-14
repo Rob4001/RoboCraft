@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 
 public class ModItems {
 
-	private static Item journal;
+	public static Item journal;
 
 	public static void initialize() {
 		journal = new Journal(0);

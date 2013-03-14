@@ -3,6 +3,7 @@ package couk.rob4001.robocraft.blocks;
 import java.util.Random;
 
 import couk.rob4001.robocraft.RoboCraft;
+import couk.rob4001.robocraft.statics.GuiIds;
 import couk.rob4001.robocraft.statics.RenderIDs;
 import couk.rob4001.robocraft.statics.Sprites;
 import couk.rob4001.robocraft.tileentities.TileEntityTinkerTable;
@@ -28,7 +29,7 @@ public class TinkerTable extends RCBlock {
         		return false;
         	}
         	
-        	player.openGui(RoboCraft.instance, 0, world, x, y, z);
+        	player.openGui(RoboCraft.instance, GuiIds.TinkerTable , world, x, y, z);
         	return true;
         }
         

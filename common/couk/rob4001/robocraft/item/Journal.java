@@ -13,19 +13,12 @@ public class Journal extends RCItem {
 		this.setItemName("Scientific Journal");
 	}
 	
-	public boolean onItemUse(ItemStack par1ItemStack,
-            EntityPlayer entityPlayer,
+	public ItemStack onItemRightClick(ItemStack itemStack,
             World world,
-            int x,
-            int y,
-            int z,
-            int par7,
-            float par8,
-            float par9,
-            float par10){
+            EntityPlayer entityPlayer){
 		
-		entityPlayer.openGui(RoboCraft.instance, GuiIds.Journal, world, x, y, z);
-		return true;
+		entityPlayer.openGui(RoboCraft.instance, GuiIds.Journal, world, entityPlayer.serverPosX, entityPlayer.serverPosY, entityPlayer.serverPosZ);
+		return itemStack;
 	}
 
 }
