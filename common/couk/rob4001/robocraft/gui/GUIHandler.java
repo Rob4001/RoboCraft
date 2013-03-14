@@ -15,7 +15,7 @@ public class GUIHandler implements IGuiHandler {
 		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
 		
 		if (tileEntity instanceof TileEntityTinkerTable) {
-			return new ContainerTinkerTable(player.inventory, (TileEntityTinkerTable) tileEntity);
+			return new ContainerTinkerTable(world, player.inventory, (TileEntityTinkerTable) tileEntity);
 		}
 		return null;
 	}
@@ -26,7 +26,7 @@ public class GUIHandler implements IGuiHandler {
 		TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
 		
 		if(tileEntity instanceof TileEntityTinkerTable){
-            return new GUITinkerTable(player.inventory, (TileEntityTinkerTable) tileEntity);
+            return new GUITinkerTable(world, player.inventory, (TileEntityTinkerTable) tileEntity);
 		}
 		return null;
 	}

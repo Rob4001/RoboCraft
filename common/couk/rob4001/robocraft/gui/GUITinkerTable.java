@@ -4,15 +4,17 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
+
 import org.lwjgl.opengl.GL11;
 import couk.rob4001.robocraft.containers.ContainerTinkerTable;
 import couk.rob4001.robocraft.tileentities.TileEntityTinkerTable;
 
 public class GUITinkerTable extends GuiContainer {
 
-	public GUITinkerTable(InventoryPlayer player, TileEntityTinkerTable te) {
+	public GUITinkerTable(World world, InventoryPlayer player, TileEntityTinkerTable te) {
 		//Container created and passed to super for handling
-		super(new ContainerTinkerTable(player, te));		
+		super(new ContainerTinkerTable(world, player, te));		
 	}
 	
 	@Override

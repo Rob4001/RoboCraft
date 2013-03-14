@@ -22,24 +22,23 @@ public class ContainerTinkerTable extends Container {
 	public IInventory craftResult = new InventoryCraftResult();
 	private World worldObj;
 	
-	public ContainerTinkerTable(InventoryPlayer inventoryPlayer, TileEntityTinkerTable te) {
+	public ContainerTinkerTable(World world, InventoryPlayer inventoryPlayer, TileEntityTinkerTable te) {
 		tileEntity = te;
 		
 		//the Slot constructor takes the IInventory and the slot number in that it binds to
-        //and the x-y coordinates it resides on-screen
-		addSlotToContainer(new SlotCrafting(inventoryPlayer.player, craftMatrix, craftResult, 0, 62, 23));
+        //and the x-y coordinates it resides on-screen. For a SlotCrafting the coords are the result slot
+		addSlotToContainer(new SlotCrafting(inventoryPlayer.player, craftMatrix, craftResult, 0, 134, 40));
 		
-		//for (int i = 0; i < 3; i++) {
-           // for (int j = 0; j < 3; j++) {                       //id            x             y
-             //       addSlotToContainer(new Slot(craftMatrix, j + i * 3, j * 18, i * 18));
-            //}
-		//}
+		for (int i = 0; i < 3; i++) {
+           for (int j = 0; j < 3; j++) {                       //id            x             y
+                  addSlotToContainer(new Slot(craftMatrix, j + i * 3, 62 + j * 18, 23 + i * 18));
+            }
+		}
 		
 		//addSlotToContainer(new Slot(tileEntity, 9, 26, 23));	
 		
-		//worldObj = world;
+		worldObj = world;
 
-		//commonly used vanilla code that adds the player's inventory
 		bindPlayerInventory(inventoryPlayer);
 		this.onCraftMatrixChanged(craftMatrix);
 	}
@@ -50,7 +49,8 @@ public class ContainerTinkerTable extends Container {
 	
 	@Override
 	public void onCraftMatrixChanged(IInventory inv){
-	//this.craftResult.setInventorySlotContents(0, ForgeCraftingManager.getInstance().findMatchingRecipe(craftMatrix, worldObj));
+		this.craftResult.setInventorySlotContents(0, 
+			CraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, this.worldObj));
 	}
 	
 	 protected void bindPlayerInventory(InventoryPlayer inventoryPlayer) {
