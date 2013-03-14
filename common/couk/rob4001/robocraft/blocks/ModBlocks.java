@@ -16,8 +16,7 @@ public class ModBlocks {
     public final static Block tinkerTable = new TinkerTable(BlockIds.TinkerTable, 0, Material.rock)
     .setHardness(5F)
     .setStepSound(Block.soundMetalFootstep)
-    .setBlockName("tinkerTable")
-    .setCreativeTab(CreativeTabs.tabBlock);    
+    .setBlockName("tinkerTable");    
     
 	public static void initialize() {
 		addNames();

@@ -12,7 +12,7 @@ public class ModItems {
 	private static Item journal;
 
 	public static void initialize() {
-		journal = new Journal(0).setCreativeTab(CreativeTabs.tabMisc);
+		journal = new Journal(0);
 		LanguageRegistry.addName(journal, "Scientific Journal");
 		GameRegistry.addShapelessRecipe(new ItemStack(journal), new Object[]{new ItemStack(Item.book),new ItemStack(Block.lever)});
 	}

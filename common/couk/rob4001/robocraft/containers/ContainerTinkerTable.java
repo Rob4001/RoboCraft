@@ -53,6 +53,21 @@ public class ContainerTinkerTable extends Container {
 			CraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, this.worldObj));
 	}
 	
+	//Action performed when gui is closed
+	//TODO add the functionality to drop contents of research slot when implemented.
+	public void onCraftGuiClosed(EntityPlayer par1EntityPlayer) {
+		super.onCraftGuiClosed(par1EntityPlayer);
+
+		if (!this.worldObj.isRemote) {
+			for (int var2 = 0; var2 < 9; ++var2) {
+				ItemStack var3 = this.craftMatrix.getStackInSlotOnClosing(var2);
+				if (var3 != null) {
+					par1EntityPlayer.dropPlayerItem(var3);
+				}
+			}
+		}
+	}
+
 	 protected void bindPlayerInventory(InventoryPlayer inventoryPlayer) {
          for (int i = 0; i < 3; i++) {
                  for (int j = 0; j < 9; j++) {
