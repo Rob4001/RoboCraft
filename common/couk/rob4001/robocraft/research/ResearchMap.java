@@ -11,19 +11,25 @@ public class ResearchMap {
 	public static int minDisplayRow;
 	public static int maxDisplayColumn;
 	public static int maxDisplayRow;
-	
+
 	public static List<ResearchItem> researchList = new ArrayList<ResearchItem>();
+
 	public static boolean isResearch(ResearchItem research) {
-		if(researchList.contains(research))return true;
+		if (researchList.contains(research))
+			return true;
 		return false;
 	}
-	
-	
-	public static ResearchItem firstResearch = (new ResearchItem(0, "openInventory", 0, 0, Item.book, (ResearchItem)null)).registerResearch();
-	public static ResearchItem SecondResearch = (new ResearchItem(0, "sjdufeInventory", 4, 7, Item.book, (ResearchItem)null)).registerResearch();
+
+	public static ResearchItem firstResearch = (new ResearchItem(0,
+			"openInventory", 0, 0, Item.book, (ResearchItem) null))
+			.registerResearch();
+	public static ResearchItem SecondResearch = (new ResearchItem(0,
+			"sjdufeInventory", 4, 7, Item.book, (ResearchItem) null))
+			.registerResearch();
+
 	public static void init() {
 	}
-	
-	//TODO:Add more research!
+
+	// TODO:Add more research!
 
 }

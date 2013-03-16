@@ -11,16 +11,19 @@ import couk.rob4001.robocraft.tileentities.TileEntityTinkerTable;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
-public class ClientProxy extends CommonProxy{
+public class ClientProxy extends CommonProxy {
 
-	 public void registerRenderers () {
-         MinecraftForgeClient.preloadTexture(ITEMS_PNG);
-         MinecraftForgeClient.preloadTexture(BLOCK_PNG);
-         MinecraftForgeClient.preloadTexture(Sprites.Model_TinkerTable);
-         
-         RenderIDs.TinkerTable = RenderingRegistry.getNextAvailableRenderId();
-         MinecraftForgeClient.registerItemRenderer(BlockIds.TinkerTable, new ItemTinkerTableRenderer());
-         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTinkerTable.class, new TileTinkerTableRenderer());
- }
-	
+	@Override
+	public void registerRenderers() {
+		MinecraftForgeClient.preloadTexture(ITEMS_PNG);
+		MinecraftForgeClient.preloadTexture(BLOCK_PNG);
+		MinecraftForgeClient.preloadTexture(Sprites.Model_TinkerTable);
+
+		RenderIDs.TinkerTable = RenderingRegistry.getNextAvailableRenderId();
+		MinecraftForgeClient.registerItemRenderer(BlockIds.TinkerTable,
+				new ItemTinkerTableRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(
+				TileEntityTinkerTable.class, new TileTinkerTableRenderer());
+	}
+
 }
