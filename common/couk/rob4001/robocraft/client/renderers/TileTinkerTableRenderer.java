@@ -15,7 +15,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class TileTinkerTableRenderer<TileAlchemicalChest> extends
+public class TileTinkerTableRenderer extends
 		TileEntitySpecialRenderer {
 
 	private ModelTinkerTable modelTinkerTable = new ModelTinkerTable(1 / 16F);

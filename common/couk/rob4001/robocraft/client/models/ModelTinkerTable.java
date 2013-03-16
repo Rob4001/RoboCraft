@@ -10,11 +10,8 @@ public class ModelTinkerTable extends ModelBase {
 	ModelRenderer Column;
 	ModelRenderer Shape1;
 
-	private float scale;
-
 	public ModelTinkerTable(float scale) {
 
-		this.scale = scale;
 		this.textureWidth = 128;
 		this.textureHeight = 64;
 

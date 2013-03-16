@@ -34,24 +34,25 @@ public class GUIJournal extends GuiScreen {
 
 	/** The right y coordinate of the research map */
 	private static final int guiMapRight = ResearchMap.maxDisplayRow * 24 - 77;
-	protected int researchsPaneWidth = 256;
-	protected int researchsPaneHeight = 202;
+	
+	protected int researchsPaneWidth = 256;//TODO:Change to size of outer boarder picture in pixels
+	protected int researchsPaneHeight = 202;//TODO^^
 
 	/** The current mouse x coordinate */
 	protected int mouseX = 0;
 
 	/** The current mouse y coordinate */
 	protected int mouseY = 0;
-	protected double field_74117_m;
-	protected double field_74115_n;
+	protected double shouldX;
+	protected double shouldY;
 
 	/** The x position of the research map */
 	protected double guiMapX;
 
 	/** The y position of the research map */
 	protected double guiMapY;
-	protected double field_74124_q;
-	protected double field_74123_r;
+	protected double atX;
+	protected double atY;
 
 	/** Whether the Mouse Button is down or not */
 	private int isMouseButtonDown = 0;
@@ -60,9 +61,9 @@ public class GUIJournal extends GuiScreen {
 	public GUIJournal() {
 		short var2 = 141;
 		short var3 = 141;
-		this.field_74117_m = this.guiMapX = this.field_74124_q = ResearchMap.firstResearch.displayColumn
+		this.shouldX = this.guiMapX = this.atX = ResearchMap.firstResearch.displayColumn
 				* 24 - var2 / 2 - 12;
-		this.field_74115_n = this.guiMapY = this.field_74123_r = ResearchMap.firstResearch.displayRow
+		this.shouldY = this.guiMapY = this.atY = ResearchMap.firstResearch.displayRow
 				* 24 - var3 / 2;
 		this.Researchs.clear();
 		for (Object research : ResearchMap.researchList) {
@@ -119,39 +120,39 @@ public class GUIJournal extends GuiScreen {
 		if (Mouse.isButtonDown(0)) {
 			int borderWidth = (this.width - this.researchsPaneWidth) / 2;
 			int boardrHeight = (this.height - this.researchsPaneHeight) / 2;
-			int var6 = borderWidth + 8;
-			int var7 = boardrHeight + 17;
+			int detectX = borderWidth + 8;
+			int detectY = boardrHeight + 17;
 
 			if ((this.isMouseButtonDown == 0 || this.isMouseButtonDown == 1)
-					&& mouseX >= var6 && mouseX < var6 + 224 && mouseY >= var7
-					&& mouseY < var7 + 155) {
+					&& mouseX >= detectX && mouseX < detectX + 224 && mouseY >= detectY
+					&& mouseY < detectY + 155) {
 				if (this.isMouseButtonDown == 0) {
 					this.isMouseButtonDown = 1;
 				} else {
 					this.guiMapX -= mouseX - this.mouseX;
 					this.guiMapY -= mouseY - this.mouseY;
-					this.field_74124_q = this.field_74117_m = this.guiMapX;
-					this.field_74123_r = this.field_74115_n = this.guiMapY;
+					this.atX = this.shouldX = this.guiMapX;
+					this.atY = this.shouldY = this.guiMapY;
 				}
 
 				this.mouseX = mouseX;
 				this.mouseY = mouseY;
 			}
 
-			if (this.field_74124_q < guiMapTop) {
-				this.field_74124_q = guiMapTop;
+			if (this.atX < guiMapTop) {
+				this.atX = guiMapTop;
 			}
 
-			if (this.field_74123_r < guiMapLeft) {
-				this.field_74123_r = guiMapLeft;
+			if (this.atY < guiMapLeft) {
+				this.atY = guiMapLeft;
 			}
 
-			if (this.field_74124_q >= guiMapBottom) {
-				this.field_74124_q = guiMapBottom - 1;
+			if (this.atX >= guiMapBottom) {
+				this.atX = guiMapBottom - 1;
 			}
 
-			if (this.field_74123_r >= guiMapRight) {
-				this.field_74123_r = guiMapRight - 1;
+			if (this.atY >= guiMapRight) {
+				this.atY = guiMapRight - 1;
 			}
 		} else {
 			this.isMouseButtonDown = 0;
@@ -171,10 +172,10 @@ public class GUIJournal extends GuiScreen {
 	 */
 	@Override
 	public void updateScreen() {
-		this.field_74117_m = this.guiMapX;
-		this.field_74115_n = this.guiMapY;
-		double var1 = this.field_74124_q - this.guiMapX;
-		double var3 = this.field_74123_r - this.guiMapY;
+		this.shouldX = this.guiMapX;
+		this.shouldY = this.guiMapY;
+		double var1 = this.atX - this.guiMapX;
+		double var3 = this.atY - this.guiMapY;
 
 		if (var1 * var1 + var3 * var3 < 4.0D) {
 			this.guiMapX += var1;
@@ -196,33 +197,33 @@ public class GUIJournal extends GuiScreen {
 	}
 
 	protected void genResearchBackground(int mouseX, int mouseY, float ticks) {
-		int var4 = MathHelper.floor_double(this.field_74117_m
-				+ (this.guiMapX - this.field_74117_m) * ticks);
-		int var5 = MathHelper.floor_double(this.field_74115_n
-				+ (this.guiMapY - this.field_74115_n) * ticks);
+		int changeX = MathHelper.floor_double(this.shouldX
+				+ (this.guiMapX - this.shouldX) * ticks);
+		int changeY = MathHelper.floor_double(this.shouldY
+				+ (this.guiMapY - this.shouldY) * ticks);
 
-		if (var4 < guiMapTop) {
-			var4 = guiMapTop;
+		if (changeX < guiMapTop) {
+			changeX = guiMapTop;
 		}
 
-		if (var5 < guiMapLeft) {
-			var5 = guiMapLeft;
+		if (changeY < guiMapLeft) {
+			changeY = guiMapLeft;
 		}
 
-		if (var4 >= guiMapBottom) {
-			var4 = guiMapBottom - 1;
+		if (changeX >= guiMapBottom) {
+			changeX = guiMapBottom - 1;
 		}
 
-		if (var5 >= guiMapRight) {
-			var5 = guiMapRight - 1;
+		if (changeY >= guiMapRight) {
+			changeY = guiMapRight - 1;
 		}
 
-		int var6 = this.mc.renderEngine.getTexture("/gui/journal.png");
-		int var7 = this.mc.renderEngine.getTexture("/achievement/bg.png");
-		int var8 = (this.width - this.researchsPaneWidth) / 2;
-		int var9 = (this.height - this.researchsPaneHeight) / 2;
-		int var10 = var8 + 16;
-		int var11 = var9 + 17;
+		int backgroundTexture = this.mc.renderEngine.getTexture("/gui/journal.png");
+		int boarderTexture = this.mc.renderEngine.getTexture("/achievement/bg.png");
+		int guiX = (this.width - this.researchsPaneWidth) / 2;
+		int guiY = (this.height - this.researchsPaneHeight) / 2;
+		int mapOriginX = guiX + 16;
+		int mapOriginY = guiY + 17;
 		this.zLevel = 0.0F;
 		GL11.glDepthFunc(GL11.GL_GEQUAL);
 		GL11.glPushMatrix();
@@ -230,13 +231,13 @@ public class GUIJournal extends GuiScreen {
 
 		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-		int vx = (int) ((var4 - guiMapTop) / Math.abs(guiMapTop - guiMapBottom) * 288.0F);
-		int vy = (int) ((var5 - guiMapLeft)
+		int xTexOffset = (int) ((changeX - guiMapTop) / Math.abs(guiMapTop - guiMapBottom) * 288.0F);
+		int yTexOffset = (int) ((changeY - guiMapLeft)
 				/ Math.abs(guiMapLeft - guiMapRight) * 316.0F);
 		GL11.glEnable(GL11.GL_COLOR_MATERIAL);
-		this.mc.renderEngine.bindTexture(var6);
-		this.drawTexturedModalRect(var10 / 2, var11 / 2, vx / 2, vy / 2, 112,
-				98);
+		this.mc.renderEngine.bindTexture(backgroundTexture);
+		this.drawTexturedModalRect(mapOriginX, mapOriginY, xTexOffset /2, yTexOffset / 2, this.researchsPaneWidth,
+				this.researchsPaneHeight);
 
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthFunc(GL11.GL_LEQUAL);
@@ -247,12 +248,12 @@ public class GUIJournal extends GuiScreen {
 
 			if (var33.parentResearch != null
 					&& ResearchMap.contains(var33.parentResearch)) {
-				int var24 = var33.displayColumn * 24 - var4 + 11 + var10;
-				int var25 = var33.displayRow * 24 - var5 + 11 + var11;
-				int var26 = var33.parentResearch.displayColumn * 24 - var4 + 11
-						+ var10;
-				int var27 = var33.parentResearch.displayRow * 24 - var5 + 11
-						+ var11;
+				int var24 = var33.displayColumn * 24 - changeX + 11 + mapOriginX;
+				int var25 = var33.displayRow * 24 - changeY + 11 + mapOriginY;
+				int var26 = var33.parentResearch.displayColumn * 24 - changeX + 11
+						+ mapOriginX;
+				int var27 = var33.parentResearch.displayRow * 24 - changeY + 11
+						+ mapOriginY;
 				int var30 = Math.sin(Minecraft.getSystemTime() % 600L / 600.0D
 						* Math.PI * 2.0D) > 0.6D ? 255 : 130;
 				int var31 = -16777216;
@@ -273,8 +274,8 @@ public class GUIJournal extends GuiScreen {
 
 		for (int var24 = 0; var24 < ResearchMap.size(); ++var24) {
 			ResearchItem var35 = ResearchMap.get(var24);
-			int var26 = var35.displayColumn * 24 - var4;
-			int var27 = var35.displayRow * 24 - var5;
+			int var26 = var35.displayColumn * 24 - changeX;
+			int var27 = var35.displayRow * 24 - changeY;
 
 			if (var26 >= -24 && var27 >= -24 && var26 <= 224 && var27 <= 155) {
 				float var38;
@@ -282,9 +283,9 @@ public class GUIJournal extends GuiScreen {
 				var38 = 0.3F;
 				GL11.glColor4f(var38, var38, var38, 1.0F);
 
-				this.mc.renderEngine.bindTexture(var7);
-				var42 = var10 + var26;
-				var41 = var11 + var27;
+				this.mc.renderEngine.bindTexture(boarderTexture);
+				var42 = mapOriginX + var26;
+				var41 = mapOriginY + var27;
 
 				if (var35.getSpecial()) {
 					this.drawTexturedModalRect(var42 - 2, var41 - 2, 26, 202,
@@ -302,8 +303,8 @@ public class GUIJournal extends GuiScreen {
 
 				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-				if (mouseX >= var10 && mouseY >= var11 && mouseX < var10 + 224
-						&& mouseY < var11 + 155 && mouseX >= var42
+				if (mouseX >= mapOriginX && mouseY >= mapOriginY && mouseX < mapOriginX + 224
+						&& mouseY < mapOriginY + 155 && mouseX >= var42
 						&& mouseX <= var42 + 22 && mouseY >= var41
 						&& mouseY <= var41 + 22) {
 					var32 = var35;
@@ -314,8 +315,8 @@ public class GUIJournal extends GuiScreen {
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.renderEngine.bindTexture(var7);
-		this.drawTexturedModalRect(var8, var9, 0, 0, this.researchsPaneWidth,
+		this.mc.renderEngine.bindTexture(boarderTexture);
+		this.drawTexturedModalRect(guiX, guiY, 0, 0, this.researchsPaneWidth,
 				this.researchsPaneHeight);
 		GL11.glPopMatrix();
 		this.zLevel = 0.0F;
