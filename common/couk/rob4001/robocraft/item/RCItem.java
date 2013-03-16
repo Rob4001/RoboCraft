@@ -1,8 +1,8 @@
 package couk.rob4001.robocraft.item;
 
 import net.minecraft.item.Item;
-import couk.rob4001.robocraft.CommonProxy;
 import couk.rob4001.robocraft.RoboCraft;
+import couk.rob4001.robocraft.statics.Sprites;
 
 public class RCItem extends Item {
 
@@ -14,7 +14,7 @@ public class RCItem extends Item {
 
 	@Override
 	public String getTextureFile() {
-		return CommonProxy.ITEMS_PNG;
+		return Sprites.Items;
 	}
 
 }

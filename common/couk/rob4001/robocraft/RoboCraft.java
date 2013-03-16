@@ -37,24 +37,21 @@ public class RoboCraft {
 
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event) {
-		// Stub Method
+		ModItems.initialize();
+		ModBlocks.initialize();
 	}
 
 	@Init
 	public void load(FMLInitializationEvent event) {
-		proxy.registerRenderers();
-		// Register the gui handler
-		GameRegistry.registerTileEntity(TileEntityTinkerTable.class,
-				"containerTinkerTable");
 		NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
-		ModItems.initialize();
-		ModBlocks.initialize();
-		ResearchMap.init();
-
+		
+		proxy.registerTileEntities();
+		
+		proxy.registerRenderers();
 	}
 
 	@PostInit
 	public void postInit(FMLPostInitializationEvent event) {
-		// Stub Method
+		ResearchMap.init();
 	}
 }

@@ -1,13 +1,18 @@
 package couk.rob4001.robocraft;
 
+import couk.rob4001.robocraft.tileentities.TileEntityTinkerTable;
+import cpw.mods.fml.common.registry.GameRegistry;
+
 public class CommonProxy {
-
-	public static String ITEMS_PNG = "/textures/items.png";
-	public static String BLOCK_PNG = "/textures/block.png";
-
 	// Client stuff
 	public void registerRenderers() {
 		// Nothing here as this is the server side proxy
+	}
+
+	public void registerTileEntities() {
+		GameRegistry.registerTileEntity(TileEntityTinkerTable.class,
+				"containerTinkerTable");
+		
 	}
 
 }
