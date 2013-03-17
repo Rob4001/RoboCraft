@@ -1,5 +1,6 @@
 package couk.rob4001.robocraft;
 
+import net.minecraft.client.multiplayer.WorldClient;
 import couk.rob4001.robocraft.tileentities.TileEntityTinkerTable;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -13,6 +14,10 @@ public class CommonProxy {
 		GameRegistry.registerTileEntity(TileEntityTinkerTable.class,
 				"containerTinkerTable");
 		
+	}
+
+	public WorldClient getClientWorld() {
+		return null;
 	}
 
 }

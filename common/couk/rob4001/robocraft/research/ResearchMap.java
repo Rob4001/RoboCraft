@@ -21,10 +21,10 @@ public class ResearchMap {
 	}
 
 	public static ResearchItem firstResearch = (new ResearchItem(0,
-			"openInventory", 0, 0, Item.book, (ResearchItem) null))
+			"openInventory", 0, 0, Item.book, null))
 			.registerResearch();
 	public static ResearchItem SecondResearch = (new ResearchItem(0,
-			"sjdufeInventory", 4, 7, Item.book, (ResearchItem) null))
+			"sjdufeInventory", 1, 2, Item.book,  new ResearchItem[]{firstResearch}))
 			.registerResearch();
 
 	public static void init() {

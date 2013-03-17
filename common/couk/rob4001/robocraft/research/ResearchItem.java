@@ -1,5 +1,8 @@
 package couk.rob4001.robocraft.research;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -8,11 +11,13 @@ public class ResearchItem {
 
 	public int displayColumn;
 	public int displayRow;
-	public ResearchItem parentResearch;
+	public ResearchItem[] parents;
 	public ItemStack icon;
 	private String researchDescription;
 	private String name;
-	private int id;
+	public int id;
+	public ResearchItem[] siblings;
+	public int iconIndex;
 
 	public boolean getSpecial() {
 		return false;
@@ -27,17 +32,17 @@ public class ResearchItem {
 	}
 
 	public ResearchItem(int id, String name, int column, int row, Item icon,
-			ResearchItem parent) {
+			ResearchItem[] parent) {
 		this(id, name, column, row, new ItemStack(icon), parent);
 	}
 
 	public ResearchItem(int id, String name, int column, int row, Block icon,
-			ResearchItem parent) {
+			ResearchItem[] parent) {
 		this(id, name, column, row, new ItemStack(icon), parent);
 	}
 
 	public ResearchItem(int id, String name, int column, int row,
-			ItemStack icon, ResearchItem parent) {
+			ItemStack icon, ResearchItem[] parent) {
 		this.id = id;
 		this.name = name;
 		this.icon = icon;
@@ -61,12 +66,22 @@ public class ResearchItem {
 			ResearchMap.maxDisplayRow = row;
 		}
 
-		this.parentResearch = parent;
+		this.parents = parent;
 	}
 
 	public ResearchItem registerResearch() {
 		ResearchMap.researchList.add(this);
 		return this;
+	}
+
+	public boolean getHidden() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean getAutoUnlock() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

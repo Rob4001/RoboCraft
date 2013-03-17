@@ -24,16 +24,16 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class GUIJournal extends GuiScreen {
 
 	/** The top x coordinate of the research map */
-	private static final int guiMapTop = ResearchMap.minDisplayColumn * 24 - 112;
+	private static final int guiMapTop = -(ResearchMap.minDisplayColumn * -12) ;
 
 	/** The left y coordinate of the research map */
-	private static final int guiMapLeft = ResearchMap.minDisplayRow * 24 - 112;
+	private static final int guiMapLeft = -(ResearchMap.minDisplayRow * 12) ;
 
 	/** The bottom x coordinate of the research map */
-	private static final int guiMapBottom = ResearchMap.maxDisplayColumn * 24 - 77;
+	private static final int guiMapBottom = ResearchMap.maxDisplayColumn * 12 ;
 
 	/** The right y coordinate of the research map */
-	private static final int guiMapRight = ResearchMap.maxDisplayRow * 24 - 77;
+	private static final int guiMapRight = ResearchMap.maxDisplayRow * 12;
 	
 	protected int researchsPaneWidth = 256;//TODO:Change to size of outer boarder picture in pixels
 	protected int researchsPaneHeight = 202;//TODO^^
@@ -58,13 +58,16 @@ public class GUIJournal extends GuiScreen {
 	private int isMouseButtonDown = 0;
 	private LinkedList<ResearchItem> Researchs = new LinkedList<ResearchItem>();
 
+	  public static int lastX = -5;
+	  public static int lastY = -6;
+	
 	public GUIJournal() {
+		System.out.println(guiMapTop+":"+guiMapBottom+":"+guiMapRight+":"+guiMapLeft);
 		short var2 = 141;
 		short var3 = 141;
-		this.shouldX = this.guiMapX = this.atX = ResearchMap.firstResearch.displayColumn
-				* 24 - var2 / 2 - 12;
-		this.shouldY = this.guiMapY = this.atY = ResearchMap.firstResearch.displayRow
-				* 24 - var3 / 2;
+		this.atX = lastX * 24 - var2 / 2 - 12;
+		
+	    this.atY = lastY * 24 - var3 / 2;
 		this.Researchs.clear();
 		for (Object research : ResearchMap.researchList) {
 			if (!ResearchMap.isResearch((ResearchItem) research)) {
@@ -118,6 +121,7 @@ public class GUIJournal extends GuiScreen {
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float ticks) {
 		if (Mouse.isButtonDown(0)) {
+			System.out.println("q:"+this.atX + " r:" + this.atY + " m:" + this.shouldX + " n:" + this.shouldY );
 			int borderWidth = (this.width - this.researchsPaneWidth) / 2;
 			int boardrHeight = (this.height - this.researchsPaneHeight) / 2;
 			int detectX = borderWidth + 8;
@@ -229,16 +233,22 @@ public class GUIJournal extends GuiScreen {
 		GL11.glPushMatrix();
 		GL11.glTranslatef(0.0F, 0.0F, -200.0F);
 
-		GL11.glDisable(GL11.GL_LIGHTING);
-		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
+		GL11.glEnable(3553);
+	    GL11.glDisable(2896);
+	    GL11.glEnable(32826);
+	    GL11.glEnable(2903);
+
+	    GL11.glPushMatrix();
+	    GL11.glScalef(2.0F, 2.0F, 1.0F);
 		int xTexOffset = (int) ((changeX - guiMapTop) / Math.abs(guiMapTop - guiMapBottom) * 288.0F);
 		int yTexOffset = (int) ((changeY - guiMapLeft)
 				/ Math.abs(guiMapLeft - guiMapRight) * 316.0F);
-		GL11.glEnable(GL11.GL_COLOR_MATERIAL);
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.renderEngine.bindTexture(backgroundTexture);
-		this.drawTexturedModalRect(mapOriginX, mapOriginY, xTexOffset /2, yTexOffset / 2, this.researchsPaneWidth,
-				this.researchsPaneHeight);
-
+		this.drawTexturedModalRect(mapOriginX/2, mapOriginY/2, (int)this.atX, (int)this.atY, 112, 98);
+		GL11.glScalef(0.5F, 0.5F, 1.0F);
+	    GL11.glPopMatrix();
+		
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthFunc(GL11.GL_LEQUAL);
 

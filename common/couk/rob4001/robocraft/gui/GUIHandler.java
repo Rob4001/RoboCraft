@@ -31,7 +31,7 @@ public class GUIHandler implements IGuiHandler {
 			return new GUITinkerTable(world, player.inventory,
 					(TileEntityTinkerTable) world.getBlockTileEntity(x, y, z));
 		case GuiIds.Journal:
-			return new GUIJournal();
+			return new GUIJournalRedo();
 		}
 		return null;
 	}

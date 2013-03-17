@@ -42,7 +42,7 @@ public class RoboCraft {
 	@Init
 	public void load(FMLInitializationEvent event) {
 		NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
-		
+		NetworkRegistry.instance().registerConnectionHandler(new ConnectionHandler());
 		proxy.registerTileEntities();
 		
 		proxy.registerRenderers();

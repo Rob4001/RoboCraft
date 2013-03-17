@@ -45,6 +45,7 @@ public class ContainerTinkerTable extends Container {
 
 		this.bindPlayerInventory(inventoryPlayer);
 		this.onCraftMatrixChanged(this.craftMatrix);
+		
 	}
 
 	@Override
