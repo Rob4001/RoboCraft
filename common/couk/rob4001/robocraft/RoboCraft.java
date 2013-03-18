@@ -1,8 +1,8 @@
 package couk.rob4001.robocraft;
 
-import generation.RobocraftWorldGenerator;
 import net.minecraft.creativetab.CreativeTabs;
 import couk.rob4001.robocraft.blocks.ModBlocks;
+import couk.rob4001.robocraft.generation.RobocraftWorldGenerator;
 import couk.rob4001.robocraft.gui.GUIHandler;
 import couk.rob4001.robocraft.item.ModItems;
 import couk.rob4001.robocraft.research.ResearchMap;

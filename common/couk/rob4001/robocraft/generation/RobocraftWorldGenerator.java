@@ -1,4 +1,4 @@
-package generation;
+package couk.rob4001.robocraft.generation;
 
 import java.util.Random;
 
