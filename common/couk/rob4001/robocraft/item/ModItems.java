@@ -9,12 +9,17 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 public class ModItems {
 
 	public static Item journal;
+	public static Item copperIngot;
 
 	public static void initialize() {
 		journal = new Journal(0);
 		LanguageRegistry.addName(journal, "Scientific Journal");
 		GameRegistry.addShapelessRecipe(new ItemStack(journal), new Object[] {
 				new ItemStack(Item.book), new ItemStack(Block.lever) });
+		
+		copperIngot = new IngotCopper(5000);
+		LanguageRegistry.addName(copperIngot, "Copper Ingot");
+		
 	}
 
 }

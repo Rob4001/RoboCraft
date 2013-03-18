@@ -1,5 +1,6 @@
 package couk.rob4001.robocraft;
 
+import generation.RobocraftWorldGenerator;
 import net.minecraft.creativetab.CreativeTabs;
 import couk.rob4001.robocraft.blocks.ModBlocks;
 import couk.rob4001.robocraft.gui.GUIHandler;
@@ -17,6 +18,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkMod.SidedPacketHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid = "robo", name = "RoboMod", version = "@VERSION@")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, clientPacketHandlerSpec = @SidedPacketHandler(channels = { "Robocraft" }, packetHandler = ClientPacketHandler.class), serverPacketHandlerSpec = @SidedPacketHandler(channels = { "Robocraft" }, packetHandler = ServerPacketHandler.class))
@@ -43,8 +45,8 @@ public class RoboCraft {
 	public void load(FMLInitializationEvent event) {
 		NetworkRegistry.instance().registerGuiHandler(this, new GUIHandler());
 		NetworkRegistry.instance().registerConnectionHandler(new ConnectionHandler());
-		proxy.registerTileEntities();
-		
+		GameRegistry.registerWorldGenerator(new RobocraftWorldGenerator());
+		proxy.registerTileEntities();		
 		proxy.registerRenderers();
 	}
 

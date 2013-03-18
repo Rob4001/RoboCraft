@@ -256,7 +256,8 @@ public class GUIJournal extends GuiScreen {
 		for (int var22 = 0; var22 < ResearchMap.size(); ++var22) {
 			ResearchItem var33 = ResearchMap.get(var22);
 
-			if (var33.parentResearch != null
+			//TODO temporarily commented to enable running of StartMod
+			/**if (var33.parentResearch != null
 					&& ResearchMap.contains(var33.parentResearch)) {
 				int var24 = var33.displayColumn * 24 - changeX + 11 + mapOriginX;
 				int var25 = var33.displayRow * 24 - changeY + 11 + mapOriginY;
@@ -270,7 +271,7 @@ public class GUIJournal extends GuiScreen {
 
 				this.drawHorizontalLine(var24, var26, var25, var31);
 				this.drawVerticalLine(var26, var25, var27, var31);
-			}
+			}**/
 		}
 
 		ResearchItem var32 = null;
@@ -335,7 +336,8 @@ public class GUIJournal extends GuiScreen {
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		super.drawScreen(mouseX, mouseY, ticks);
 
-		if (var32 != null) {
+		//TODO temporarily commented to enable running of StartMod
+		/**if (var32 != null) {
 			String var34 = LanguageHelper.translateToLocal(var32.getName());
 			String var36 = var32.getDescription();
 			int var26 = mouseX + 12;
@@ -355,12 +357,12 @@ public class GUIJournal extends GuiScreen {
 
 			this.fontRenderer.drawStringWithShadow(var34, var26, var27,
 					var32.getSpecial() ? -128 : -1);
-		}
+		} **/
 
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glEnable(GL11.GL_LIGHTING);
 		RenderHelper.disableStandardItemLighting();
-	}
+	} 
 
 	/**
 	 * Returns true if this GUI should pause the game when it is displayed in
