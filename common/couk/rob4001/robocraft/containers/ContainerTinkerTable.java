@@ -11,6 +11,8 @@ import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.world.World;
+import couk.rob4001.robocraft.blocks.ModBlocks;
+import couk.rob4001.robocraft.item.ModItems;
 import couk.rob4001.robocraft.tileentities.TileEntityTinkerTable;
 
 public class ContainerTinkerTable extends Container {
@@ -19,6 +21,9 @@ public class ContainerTinkerTable extends Container {
 	// Create 3x3 crafting matrix
 	public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
 	public IInventory craftResult = new InventoryCraftResult();
+	public IInventory researchInput=  new InventoryCrafting(this, 1, 1);
+	public IInventory researchOutput = new InventoryCraftResult();
+	
 	private World worldObj;
 
 	public ContainerTinkerTable(World world, InventoryPlayer inventoryPlayer,
@@ -39,13 +44,18 @@ public class ContainerTinkerTable extends Container {
 			}
 		}
 
-		// addSlotToContainer(new Slot(tileEntity, 9, 26, 23));
+		//Add research output slot
+		addSlotToContainer(new SlotCrafting(inventoryPlayer.player,
+				this.researchInput, this.craftResult, 0, 134, 40));
+		
+		//Add research input slot
+		this.addSlotToContainer(new Slot(this.researchInput, 0, 26, 23));
 
 		this.worldObj = world;
 
 		this.bindPlayerInventory(inventoryPlayer);
-		this.onCraftMatrixChanged(this.craftMatrix);
-		
+		this.onCraftMatrixChanged(this.craftMatrix);	
+		this.onCraftMatrixChanged(this.researchInput);
 	}
 
 	@Override
@@ -55,15 +65,27 @@ public class ContainerTinkerTable extends Container {
 
 	@Override
 	public void onCraftMatrixChanged(IInventory inv) {
-		this.craftResult.setInventorySlotContents(
-				0,
-				CraftingManager.getInstance().findMatchingRecipe(
-						this.craftMatrix, this.worldObj));
+		if (inv == craftMatrix) {
+			this.craftResult.setInventorySlotContents(
+					0,
+					CraftingManager.getInstance().findMatchingRecipe(
+							this.craftMatrix, this.worldObj));
+		} else if (inv == researchInput) {
+			if (researchInput.getStackInSlot(0) != null) {
+				if (this.researchInput.getStackInSlot(0).itemID == (new ItemStack(ModItems.copperIngot)).itemID 
+						&& Math.random() < 0.33
+						&& this.researchInput.getStackInSlot(0) != null) {
+					this.craftResult.setInventorySlotContents(
+							0, new ItemStack(ModBlocks.copperOre));
+					this.researchInput.setInventorySlotContents(0, null);
+				} else {
+					this.craftResult.setInventorySlotContents(0, null);
+				}
+			}
+		}
 	}
 
 	// Action performed when gui is closed
-	// TODO add the functionality to drop contents of research slot when
-	// implemented.
 	@Override
 	public void onCraftGuiClosed(EntityPlayer par1EntityPlayer) {
 		super.onCraftGuiClosed(par1EntityPlayer);
@@ -74,6 +96,10 @@ public class ContainerTinkerTable extends Container {
 				if (var3 != null) {
 					par1EntityPlayer.dropPlayerItem(var3);
 				}
+			}
+			ItemStack var4 = this.researchInput.getStackInSlotOnClosing(0);
+			if (var4 != null) {
+				par1EntityPlayer.dropPlayerItem(var4);
 			}
 		}
 	}

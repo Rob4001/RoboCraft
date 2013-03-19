@@ -48,12 +48,14 @@ public class GUITinkerTable extends GuiContainer {
 		super.initGui();
 		// make buttons
 
+		/** no longer needed (I hope)
 		GuiButton research = new GuiButton(1,
 				((this.width - this.xSize) / 2) + 8,
 				((this.height - this.ySize) / 2) + (this.ySize / 2) - 35, 50,
 				20, "Research");
 		// id, x, y, width, height, text
 		this.controlList.add(research);
+		**/
 	}
 
 	@Override
