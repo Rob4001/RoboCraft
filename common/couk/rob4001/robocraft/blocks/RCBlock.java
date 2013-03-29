@@ -3,6 +3,7 @@ package couk.rob4001.robocraft.blocks;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
@@ -10,8 +11,8 @@ import couk.rob4001.robocraft.RoboCraft;
 
 public abstract class RCBlock extends BlockContainer {
 
-	protected RCBlock(int par1, int par2, Material par3Material) {
-		super(par1, par2, par3Material);
+	protected RCBlock(int par1, Material par3Material) {
+		super(par1, par3Material);
 		this.setCreativeTab(RoboCraft.creativeTab);
 	}
 
@@ -20,7 +21,7 @@ public abstract class RCBlock extends BlockContainer {
 	 */
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z,
-			EntityLiving entityLiving) {
+			EntityLiving entityLiving,ItemStack is) {
 
 		int direction = 0;
 		int facing = MathHelper
@@ -36,7 +37,7 @@ public abstract class RCBlock extends BlockContainer {
 			direction = ForgeDirection.WEST.ordinal();
 		}
 
-		world.setBlockMetadataWithNotify(x, y, z, direction);
+		world.setBlockMetadataWithNotify(x, y, z, direction,0x02);
 	}
 
 }

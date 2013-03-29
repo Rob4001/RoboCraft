@@ -35,7 +35,7 @@ public class GUITinkerTable extends GuiContainer {
 		// draw your Gui here, only thing you need to change is the path
 		int texture = this.mc.renderEngine.getTexture("/gui/tt.png");
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.renderEngine.bindTexture(texture);
+		this.mc.renderEngine.bindTexture("/gui/tt.png");
 		int x = (this.width - this.xSize) / 2;
 		int y = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);

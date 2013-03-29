@@ -17,8 +17,8 @@ import couk.rob4001.robocraft.tileentities.TileEntityTinkerTable;
 
 public class TinkerTable extends RCBlock {
 
-	public TinkerTable(int id, int texture, Material material) {
-		super(id, texture, material);
+	public TinkerTable(int id, Material material) {
+		super(id, material);
 	}
 
 	@Override
@@ -72,11 +72,6 @@ public class TinkerTable extends RCBlock {
 				item.stackSize = 0;
 			}
 		}
-	}
-
-	@Override
-	public String getTextureFile() {
-		return Sprites.Model_TinkerTable;
 	}
 
 	@Override

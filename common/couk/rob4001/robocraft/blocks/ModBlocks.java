@@ -2,11 +2,9 @@ package couk.rob4001.robocraft.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.OreDictionary;
 import couk.rob4001.robocraft.item.ModItems;
 import couk.rob4001.robocraft.statics.BlockIds;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -16,10 +14,10 @@ public class ModBlocks {
 
 	// Blocks
 	public final static Block tinkerTable = new TinkerTable(
-			BlockIds.TinkerTable, 0, Material.rock).setHardness(5F)
-			.setStepSound(Block.soundMetalFootstep).setBlockName("tinkerTable");
+			BlockIds.TinkerTable, Material.rock).setHardness(5F)
+			.setStepSound(Block.soundMetalFootstep).setUnlocalizedName("tinkerTable");
 	
-	public final static Block copperOre = new OreCopper(BlockIds.CopperOre, 0, Material.iron);
+	public final static Block copperOre = new OreCopper(BlockIds.CopperOre, Material.iron);
 
 	public static void initialize() {
 		addNames();

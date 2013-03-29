@@ -9,8 +9,8 @@ public class IngotCopper extends Item {
 		super(id);
 		setMaxStackSize(64);
 		setCreativeTab(CreativeTabs.tabMisc);
-		setIconIndex(1);
-		setItemName("copperIngot");
+		//TODO: Split icons setIconIndex(1);
+		this.setUnlocalizedName("copperIngot");
 	}
 	
 	public String getTextureFile() {

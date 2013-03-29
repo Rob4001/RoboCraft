@@ -53,7 +53,7 @@ public class TileTinkerTableRenderer extends
 		}
 		GL11.glRotatef(angle, 0.0F, 1.0F, 0.0F);
 		GL11.glTranslatef(0, -1F, 0);
-		FMLClientHandler.instance().getClient().renderEngine.bindTexture(id);
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(Sprites.Model_TinkerTable);
 		this.modelTinkerTable.render(1 / 16F);
 		GL11.glDisable(GL12.GL_RESCALE_NORMAL);
 		GL11.glPopMatrix();

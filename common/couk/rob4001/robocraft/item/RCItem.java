@@ -8,13 +8,8 @@ public class RCItem extends Item {
 
 	public RCItem(int id) {
 		super(id + RoboCraft.idShift);
-		this.setIconIndex(id);
+		//TODO Split items this.setIconIndex(id);
 		this.setCreativeTab(RoboCraft.creativeTab);
-	}
-
-	@Override
-	public String getTextureFile() {
-		return Sprites.Items;
 	}
 
 }

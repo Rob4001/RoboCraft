@@ -13,6 +13,7 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.world.World;
 import couk.rob4001.robocraft.blocks.ModBlocks;
 import couk.rob4001.robocraft.item.ModItems;
+import couk.rob4001.robocraft.research.ResearchHandler;
 import couk.rob4001.robocraft.tileentities.TileEntityTinkerTable;
 
 public class ContainerTinkerTable extends Container {
@@ -25,10 +26,12 @@ public class ContainerTinkerTable extends Container {
 	public IInventory researchOutput = new InventoryCraftResult();
 	
 	private World worldObj;
+	private InventoryPlayer player;
 
 	public ContainerTinkerTable(World world, InventoryPlayer inventoryPlayer,
 			TileEntityTinkerTable te) {
 		this.tileEntity = te;
+		this.player = inventoryPlayer;
 
 		// the Slot constructor takes the IInventory and the slot number in that
 		// it binds to
@@ -72,6 +75,8 @@ public class ContainerTinkerTable extends Container {
 							this.craftMatrix, this.worldObj));
 		} else if (inv == researchInput) {
 			if (researchInput.getStackInSlot(0) != null) {
+				//TODO: I prefered the button Then you could put a stack in and mash the button (ATM if you put a stack in it dies instantly)
+				// Please use ResearchHandler.researchItem(itemStack,player);
 				if (this.researchInput.getStackInSlot(0).itemID == (new ItemStack(ModItems.copperIngot)).itemID 
 						&& Math.random() < 0.33
 						&& this.researchInput.getStackInSlot(0) != null) {
@@ -82,6 +87,7 @@ public class ContainerTinkerTable extends Container {
 					this.craftResult.setInventorySlotContents(0, null);
 				}
 			}
+			
 		}
 	}
 
