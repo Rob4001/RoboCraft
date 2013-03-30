@@ -17,8 +17,8 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void registerRenderers() {
-		MinecraftForgeClient.preloadTexture(Sprites.Items);
-		MinecraftForgeClient.preloadTexture(Sprites.Block);
+		//MinecraftForgeClient.preloadTexture(Sprites.Items);
+		//MinecraftForgeClient.preloadTexture(Sprites.Block);
 		MinecraftForgeClient.preloadTexture(Sprites.Model_TinkerTable);
 
 		RenderIDs.TinkerTable = RenderingRegistry.getNextAvailableRenderId();

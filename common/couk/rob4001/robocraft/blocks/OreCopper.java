@@ -1,14 +1,12 @@
 package couk.rob4001.robocraft.blocks;
 
-import java.util.Random;
-
-import couk.rob4001.robocraft.CommonProxy;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
-public class OreCopper extends Block {
+public class OreCopper extends RCBlock {
 
 	public OreCopper(int blockID, Material material) {
 		super(blockID, material );		
@@ -17,5 +15,10 @@ public class OreCopper extends Block {
 		this.setUnlocalizedName("copperOre");
 		
 		setCreativeTab(CreativeTabs.tabBlock);
+	}
+
+	@Override
+	public TileEntity createNewTileEntity(World world) {
+		return null;
 	}
 }

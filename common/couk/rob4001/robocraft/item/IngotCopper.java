@@ -3,7 +3,7 @@ package couk.rob4001.robocraft.item;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-public class IngotCopper extends Item {
+public class IngotCopper extends RCItem {
 
 	public IngotCopper(int id) {
 		super(id);
@@ -11,10 +11,6 @@ public class IngotCopper extends Item {
 		setCreativeTab(CreativeTabs.tabMisc);
 		//TODO: Split icons setIconIndex(1);
 		this.setUnlocalizedName("copperIngot");
-	}
-	
-	public String getTextureFile() {
-        return "/textures/items.png";
 	}
 
 }

@@ -51,7 +51,7 @@ public class ItemTinkerTableRenderer implements IItemRenderer {
 	private void renderTinkerTable(float x, float y, float z) {
 
 		FMLClientHandler.instance().getClient().renderEngine
-				.getTexture("/textures/chest.png");
+				.bindTexture("/mods/robo/textures/blocks/tinkerTable.png");
 
 		GL11.glPushMatrix(); // start
 		GL11.glTranslatef(x, y, z); // size

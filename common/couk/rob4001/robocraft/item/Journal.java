@@ -10,7 +10,7 @@ public class Journal extends RCItem {
 
 	public Journal(int id) {
 		super(id);
-		this.setUnlocalizedName("Scientific Journal");
+		this.setUnlocalizedName("journal");
 	}
 
 	@Override
