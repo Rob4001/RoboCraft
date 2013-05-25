@@ -222,9 +222,9 @@ private String player;
 	      var5 = guiMapRight - 1;
 	    }
 	    
-	    int var6 = this.mc.renderEngine.getTexture("/gui/journal.png");
-	    int var7 = this.mc.renderEngine.getTexture("/gui/gui_research.png");
-	    int var88 = this.mc.renderEngine.getTexture("/textures/research.png");
+	    int var6 = this.mc.renderEngine.getTexture("/mods/robo/textures/items/journal.png");
+	    int var7 = this.mc.renderEngine.getTexture("/mods/robo/textures/gui/gui_research.png");
+	    int var88 = this.mc.renderEngine.getTexture("/mods/robo/textures/items/journal.png");
 	    int var8 = (this.width - this.paneWidth) / 2;
 	    int var9 = (this.height - this.paneHeight) / 2;
 	    int var10 = var8 + 16;
@@ -244,7 +244,7 @@ private String player;
 	    int vy = (int)((var5 - guiMapLeft) / Math.abs(guiMapLeft - guiMapRight) * 316.0F);
 	    System.out.println(vx+":"+vy+":"+var4+":"+var5);
 	    GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-	    this.mc.renderEngine.bindTexture("/gui/journal.png");
+	    this.mc.renderEngine.bindTexture("/mods/robo/textures/gui/journal.png");
 	    this.drawTexturedModalRect(var10 / 2, var11 / 2, vx / 2, vy / 2, 112, 98);
 	    GL11.glScalef(0.5F, 0.5F, 1.0F);
 	    GL11.glPopMatrix();
@@ -359,7 +359,7 @@ private String player;
 	          }
 	        }
 
-	        this.mc.renderEngine.bindTexture("/gui/gui_research.png");
+	        this.mc.renderEngine.bindTexture("/mods/robo/textures/gui/gui_research.png");
 	        int var42 = var10 + var26;
 	        int var41 = var11 + var27;
 
@@ -404,7 +404,7 @@ private String player;
 	    GL11.glDisable(2929);
 	    GL11.glEnable(3042);
 	    GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-	    this.mc.renderEngine.bindTexture("/gui/gui_research.png");
+	    this.mc.renderEngine.bindTexture("/mods/robo/textures/gui/gui_research.png");
 	    this.drawTexturedModalRect(var8, var9, 0, 0, this.paneWidth, this.paneHeight);
 
 	    GL11.glPopMatrix();

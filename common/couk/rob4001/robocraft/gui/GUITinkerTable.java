@@ -33,9 +33,9 @@ public class GUITinkerTable extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(float var1, int var2,
 			int var3) {
 		// draw your Gui here, only thing you need to change is the path
-		int texture = this.mc.renderEngine.getTexture("/gui/tt.png");
+		int texture = this.mc.renderEngine.getTexture("/mods/robo/textures/gui/ttwithoutcrafting.png");
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.renderEngine.bindTexture("/gui/tt.png");
+		this.mc.renderEngine.bindTexture("/mods/robo/textures/gui/tt.png");
 		int x = (this.width - this.xSize) / 2;
 		int y = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, this.xSize, this.ySize);

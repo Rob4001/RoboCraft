@@ -15,6 +15,7 @@ public class RCItem extends Item {
 		this.setCreativeTab(RoboCraft.creativeTab);
 	}
 	
+	/**
     @Override
     @SideOnly(Side.CLIENT)
     public void updateIcons(IconRegister iconRegister) {
@@ -22,5 +23,5 @@ String name = "robo:" + this.getUnlocalizedName().substring(this.getUnlocalizedN
 System.out.println("Regestered icon for " + name);
         iconIndex = iconRegister.registerIcon(name);
     }
-
+**/
 }
